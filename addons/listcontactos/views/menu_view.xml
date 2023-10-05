@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="contacto_action" model="ir.actions.act_window">
+        <field name="name">Contacts</field>
+        <field name="res_model">contactos</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="race_action" model="ir.actions.act_window">
+        <field name="name">Race</field>
+        <field name="res_model">catalog.race</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="visa_type_action" model="ir.actions.act_window">
+        <field name="name">Visa Type</field>
+        <field name="res_model">catalog.visa_type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+    <menuitem name="Contact Management System" id="contacto_menu" />
+    <menuitem name="Contacts" id="contactos_menu" parent="contacto_menu" action="contacto_action"/>
+
+    <menuitem name="Nomenclator" id="nomenclator_menu"/>
+    <menuitem name="Catalog" id="catalog_menu" parent="nomenclator_menu"/>
+    <menuitem name="Race" id="race_menu" parent="catalog_menu" action="race_action"/>
+    <menuitem name="Visa Type" id="visa_type_menu" parent="catalog_menu" action="visa_type_action"/>
+
+</odoo>

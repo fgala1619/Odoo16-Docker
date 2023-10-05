@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_contacto_user,Acceso a Contacto,model_contactos,base.group_user,1,1,1,1
+access_bank_details,Acceso a Detalles Bancarios,model_bank_detail,base.group_user,1,1,1,1
+access_address,Acceso a Address,model_contacto_address,base.group_user,1,1,1,1
+access_group_admin_race, Acceso Grupo Admin Race,model_catalog_race,listcontactos.group_admin,1,1,1,0
+access_group_admin_visa, Acceso Grupo Admin Visa,model_catalog_visa_type,listcontactos.group_admin,1,1,1,0
+access_group_agent_race, Acceso Grupo Agent Race,model_catalog_race,listcontactos.group_agent,1,1,0,0
+access_group_agent_visa, Acceso Grupo Agent Visa,model_catalog_visa_type,listcontactos.group_agent,1,1,0,0

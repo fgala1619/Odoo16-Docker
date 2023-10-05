@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="1">
+
+    <record id="contact_grupos1" model="ir.module.category">
+        <field name="name">Contactos Otros Accesos</field>
+        <field name="sequence">6</field>
+        <field name="description">Otros accesos al sistema de contactos</field>
+    </record>
+
+    <record id="group_admin" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="category_id" ref="contact_grupos1"/>
+        <field name="comment">Grupo Admin</field>
+    </record>
+
+    <record id="group_agent" model="res.groups">
+        <field name="name">Agent</field>
+        <field name="category_id" ref="contact_grupos1"/>
+        <field name="comment">Grupo Agent</field>
+    </record>
+
+
+</data>
+</odoo>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="identity_seq" model="ir.sequence">
+            <field name="name">Identity</field>
+            <field name="code">identity.seq</field>
+            <field eval="1000" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field name="prefix"></field>
+            <field name="padding">5</field>
+        </record>
+
+        <record id="res_bank_jpmorgan" model="res.bank">
+            <field name="name">JPMorgan Chase</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="res_bank_citigroup" model="res.bank">
+            <field name="name">Citigroup</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="res_bank_bmo" model="res.bank">
+            <field name="name">BMO</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="res_bank_xyz" model="res.bank">
+            <field name="name">Others</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="res_race_wh" model="catalog.race">
+            <field name="name">White</field>
+            <field name="description">White</field>
+            <field name="state">completed</field>
+        </record>
+
+        <record id="res_race_aa" model="catalog.race">
+            <field name="name">African American</field>
+            <field name="description">African American</field>
+            <field name="state">completed</field>
+        </record>
+
+        <record id="res_race_as" model="catalog.race">
+            <field name="name">Asian</field>
+            <field name="description">Asian</field>
+            <field name="state">completed</field>
+        </record>
+
+        <record id="res_race_mr" model="catalog.race">
+            <field name="name">Multi racial</field>
+            <field name="description">Multi racial</field>
+            <field name="state">completed</field>
+        </record>
+
+        <record id="res_race_unk" model="catalog.race">
+            <field name="name">Unknown</field>
+            <field name="description">Unknown</field>
+            <field name="state">completed</field>
+        </record>
+
+        <record id="res_visa_b" model="catalog.visa_type">
+            <field name="name">Visa B</field>
+            <field name="description">For vacation, visiting relatives, or medical treatment</field>
+            <field name="state">completed</field>
+        </record>
+
+        <record id="res_visa_fm" model="catalog.visa_type">
+            <field name="name">Visa F M</field>
+            <field name="description">For academic studies</field>
+            <field name="state">completed</field>
+        </record>
+
+        <record id="res_visa_j" model="catalog.visa_type">
+            <field name="name">Visa J</field>
+            <field name="description">For approved exchange program</field>
+            <field name="state">completed</field>
+        </record>
+
+        <record id="res_visa_e1" model="catalog.visa_type">
+            <field name="name">Visa E1</field>
+            <field name="description">Employees with Priority or Extraordinary Ability</field>
+            <field name="state">completed</field>
+        </record>
+
+        <record id="res_visa_e2" model="catalog.visa_type">
+            <field name="name">Visa E2</field>
+            <field name="description">Employees with high qualification or exceptional ability</field>
+            <field name="state">completed</field>
+        </record>
+
+
+    </data>
+</odoo>

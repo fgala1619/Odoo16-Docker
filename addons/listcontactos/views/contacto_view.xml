@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Vista formulario para Contactos -->
+
+    <record model="ir.ui.view" id="contacto_form_view">
+        <field name="name">contacto.form.view</field>
+        <field name="model">contactos</field>
+        <field name="arch" type="xml">
+            <form string="Contacts">
+                <sheet>
+                    <group col="12">
+                        <group colspan="4">
+                            <field name="identity_number" force_save="1" readonly="1"/>
+                            <field name="name"/>
+                        </group>
+                        <group colspan="4">
+                            <field name="data_entry_date"/>
+                            <field name="surnames"/>
+                        </group>
+                        <group colspan="4">
+                            <field name="date_of_birth"/>
+                            <field name="age"/>
+                        </group>
+                    </group>
+                     <separator colspan="4"/>
+                    <group>
+                        <group>
+                            <field name="gender"/>
+                            <field name="race_id"/>
+                        </group>
+                        <group>
+                            <field name="visa_type_id"/>
+                            <field name="email" widget="email"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Address">
+                            <group col="4">
+                                <field name="address_ids" nolabel="1" colspan="4">
+                                    <tree editable="bottom" >
+                                        <field name="street"/>
+                                        <field name="number"/>
+                                        <field name="state_id"/>
+                                        <field name="postal_code"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Banking Info">
+                            <group col="4">
+                                <field name="bank_ids" nolabel="1" colspan="4">
+                                    <tree editable="bottom" >
+                                        <field name="bank_id"/>
+                                        <field name="card_type"/>
+                                        <field name="status"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista Arbol (Tree) para Contactos -->
+
+    <record model="ir.ui.view" id="contactos_tree_view">
+        <field name="name">contactos.tree.view</field>
+        <field name="model">contactos</field>
+        <field name="arch" type="xml">
+            <tree string="Contacts">
+                <field name="identity_number"/>
+                <field name="name"/>
+                <field name="surnames"/>
+                <field name="data_entry_date"/>
+                <field name="date_of_birth"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="race_id"/>
+                <field name="visa_type_id"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista Búsqueda para Contactos -->
+
+    <record model = "ir.ui.view" id = "contactos_search_view">
+            <field name="name">contactos.search.view</field>
+            <field name="model">contactos</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" string="Name" />
+                    <field name="identity_number" string="Identity Number" />
+                    <field name="email" string="Email" />
+                    <filter name="male" string="Male" domain="[('gender', '=', 'male')]" />
+                    <filter name="female" string="Female" domain="[('gender', '=', 'female')]" />
+                    <filter name="debit_cards" string="Debit Cards" domain="[('bank_ids.card_type', '=', 'db')]" />
+                    <filter name="credit_cards" string="Credit Cards" domain="[('bank_ids.card_type', '=', 'cr')]" />
+                </search>
+            </field>
+    </record>
+
+
+</odoo>
