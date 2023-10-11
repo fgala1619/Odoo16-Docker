@@ -8,19 +8,6 @@
             <field name="model">catalog.race</field>
             <field name="arch" type="xml">
                 <form string="Race">
-                    <header>
-                        <button name="action_change_state_race" string="Change to review"
-                                class="oe_highlight" states="draft" type="object"
-                                context="{'state': 'review'}"
-                                groups="listcontactos.group_agent"
-                        />
-                        <button name="action_change_state_race" string="Change to completed"
-                                class="oe_highlight" states="review" type="object"
-                                context="{'state': 'completed'}"
-                                groups="listcontactos.group_admin"
-                        />
-                        <field name="state" widget="statusbar" statusbar_visible="draft,review,completed" />
-                    </header>
                     <sheet>
                         <group>
                             <field name="name" />

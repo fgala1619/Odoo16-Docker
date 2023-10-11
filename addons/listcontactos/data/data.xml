@@ -5,7 +5,7 @@
         <record id="identity_seq" model="ir.sequence">
             <field name="name">Identity</field>
             <field name="code">identity.seq</field>
-            <field eval="1000" name="number_next"/>
+            <field eval="10000" name="number_next"/>
             <field eval="1" name="number_increment"/>
             <field name="prefix"></field>
             <field name="padding">5</field>

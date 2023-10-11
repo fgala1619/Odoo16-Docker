@@ -8,13 +8,13 @@
         <field name="description">Otros accesos al sistema de contactos</field>
     </record>
 
-    <record id="group_admin" model="res.groups">
+    <record id="listcontactos.group_admin" model="res.groups">
         <field name="name">Administrator</field>
         <field name="category_id" ref="contact_grupos1"/>
         <field name="comment">Grupo Admin</field>
     </record>
 
-    <record id="group_agent" model="res.groups">
+    <record id="listcontactos.group_agent" model="res.groups">
         <field name="name">Agent</field>
         <field name="category_id" ref="contact_grupos1"/>
         <field name="comment">Grupo Agent</field>

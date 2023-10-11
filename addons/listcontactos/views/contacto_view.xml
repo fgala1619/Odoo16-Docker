@@ -1,6 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+<!--    <css src="/listcontactos/static/src/css/style.css"/>-->
+    <record id="res_config_settings_view_form_listcontactos" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.listcontactos</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="25"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Listcontactos" string="Listcontactos" data-key="listcontactos" groups="listcontactos.group_admin">
+                    <h2>Race</h2>
+                    <div class="row mt16 o_settings_container" name="race_setting_container">
+                        <div class="col-12 col-lg-6 o_setting_box" id="po_order_approval">
+                            <field name="race_id"/>
+                        </div>
+
+                    </div>
+<!--                    <h2>Visa Type</h2>-->
+<!--                    <div class="row mt16 o_settings_container" name="invoicing_settings_container">-->
+<!--                        <div class="col-12 col-lg-6 o_setting_box" id="quantities_billed_vendor" title="This default value is applied to any new product created. This can be changed in the product detail form.">-->
+<!--                            <div class="o_setting_left_pane"/>-->
+<!--                            <div class="o_setting_right_pane">-->
+<!--                                <label for="default_purchase_method"/>-->
+<!--                                <a href="https://www.odoo.com/documentation/16.0/applications/inventory_and_mrp/purchase/manage_deals/control_bills.html" title="Documentation" class="o_doc_link" target="_blank"></a>-->
+<!--                                <div class="text-muted">-->
+<!--                                    Quantities billed by vendors-->
+<!--                                </div>-->
+<!--                                <div class="content-group">-->
+<!--                                    <div class="mt16">-->
+<!--                                        <field name="default_purchase_method" class="o_light_label" widget="radio"/>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-12 col-lg-6 o_setting_box"-->
+<!--                            id="three_way_matching"-->
+<!--                            title="If enabled, activates 3-way matching on vendor bills : the items must be received in order to pay the invoice.">-->
+<!--                            <div class="o_setting_left_pane">-->
+<!--                                <field name="module_account_3way_match" string="3-way matching" widget="upgrade_boolean"/>-->
+<!--                            </div>-->
+<!--                            <div class="o_setting_right_pane">-->
+<!--                                <label for="module_account_3way_match"/>-->
+<!--                                <a href="https://www.odoo.com/documentation/16.0/applications/inventory_and_mrp/purchase/manage_deals/control_bills.html" title="Documentation" class="o_doc_link" target="_blank"></a>-->
+<!--                                <div class="text-muted">-->
+<!--                                    Make sure you only pay bills for which you received the goods you ordered-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="bank_view_tree" model="ir.ui.view">
+        <field name="name">bank_view_tree</field>
+        <field name="model">bank.detail</field>
+        <field name="arch" type="xml">
+            <tree string="bank_tree" editable="bottom">
+                <field name="bank_id"/>
+                <field name="card_type"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
     <!-- Vista formulario para Contactos -->
 
     <record model="ir.ui.view" id="contacto_form_view">
@@ -8,30 +74,48 @@
         <field name="model">contactos</field>
         <field name="arch" type="xml">
             <form string="Contacts">
+                <header>
+                        <button name="action_change_state_contact" string="Change to review"
+                                class="oe_highlight" states="draft" type="object"
+                                context="{'state': 'review'}"
+                                groups="listcontactos.group_agent"
+                        />
+                        <button name="action_change_state_contact" string="Change to completed"
+                                class="oe_highlight" states="review" type="object"
+                                context="{'state': 'completed'}"
+                                groups="listcontactos.group_admin"
+                        />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,review,completed" />
+                    </header>
                 <sheet>
+                    <style type="text/css">
+                        .o_field_required{
+                          background-color:#ffdddd !important;
+                        }
+                    </style>
                     <group col="12">
                         <group colspan="4">
-                            <field name="identity_number" force_save="1" readonly="1"/>
-                            <field name="name"/>
+                            <field name="identity_number" style="background-color:#ffdddd !important;"/>
+                            <field name="name" style="background-color:#ffdddd !important;"/>
                         </group>
                         <group colspan="4">
                             <field name="data_entry_date"/>
-                            <field name="surnames"/>
+                            <field name="surnames" style="background-color:#ffdddd !important;"/>
                         </group>
                         <group colspan="4">
-                            <field name="date_of_birth"/>
+                            <field name="date_of_birth" style="background-color:#ffdddd !important;" options="{'datepicker': {'warn_future': True}}"/>
                             <field name="age"/>
                         </group>
                     </group>
                      <separator colspan="4"/>
                     <group>
                         <group>
-                            <field name="gender"/>
+                            <field name="gender" style="background-color:#ffdddd !important;"/>
                             <field name="race_id"/>
                         </group>
                         <group>
                             <field name="visa_type_id"/>
-                            <field name="email" widget="email"/>
+                            <field name="email" widget="email" style="background-color:#ffdddd !important;"/>
                         </group>
                     </group>
                     <notebook>
@@ -42,19 +126,19 @@
                                         <field name="street"/>
                                         <field name="number"/>
                                         <field name="state_id"/>
-                                        <field name="postal_code"/>
+                                        <field name="postal_code" style="background-color:#ffdddd !important;"/>
                                     </tree>
                                 </field>
                             </group>
                         </page>
                         <page string="Banking Info">
                             <group col="4">
-                                <field name="bank_ids" nolabel="1" colspan="4">
-                                    <tree editable="bottom" >
-                                        <field name="bank_id"/>
-                                        <field name="card_type"/>
-                                        <field name="status"/>
-                                    </tree>
+                                <field name="bank_ids"  widget="one2many" nolabel="1" colspan="4">
+<!--                                    <tree editable="bottom" >-->
+<!--                                        <field name="bank_id"/>-->
+<!--                                        <field name="card_type"/>-->
+<!--                                        <field name="status"/>-->
+<!--                                    </tree>-->
                                 </field>
                             </group>
                         </page>
@@ -104,6 +188,10 @@
                     <filter name="female" string="Female" domain="[('gender', '=', 'female')]" />
                     <filter name="debit_cards" string="Debit Cards" domain="[('bank_ids.card_type', '=', 'db')]" />
                     <filter name="credit_cards" string="Credit Cards" domain="[('bank_ids.card_type', '=', 'cr')]" />
+                    <filter name="type_of_visa" string="Type of Visa" context="{'group_by': 'visa_type_id'}" />
+                    <filter name="race" string="Race" context="{'group_by': 'race_id'}" />
+                    <filter name="gender" string="Gender" context="{'group_by': 'gender'}" />
+                    <filter name="bank" string="Bank" context="{'group_by': 'bank_ids'}" />
                 </search>
             </field>
     </record>

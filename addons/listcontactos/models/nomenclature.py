@@ -8,9 +8,6 @@ class Race(models.Model):
 
     name = fields.Char(string="Name", required=True)
     description = fields.Text(string="Description")
-    state = fields.Selection(string="State", selection=[('draft', 'Draft'), ('review', 'Review'),
-                                                        ('completed', 'Completed'), ],
-                             default='draft', )
 
     def name_get(self):
         res = []
@@ -18,9 +15,6 @@ class Race(models.Model):
             name = f'{race.name} - {race.description}'
             res.append((race.id, name))
         return res
-
-    def action_change_state_race(self):
-        return self.write({'state': self.env.context.get('state')})
 
 
 class VisaType(models.Model):
@@ -30,9 +24,7 @@ class VisaType(models.Model):
 
     name = fields.Char(string="Name", required=True)
     description = fields.Text(string="Description")
-    state = fields.Selection(string="State", selection=[('draft', 'Draft'), ('review', 'Review'),
-                                                        ('completed', 'Completed'), ],
-                             default='draft', )
+
 
     def name_get(self):
         res = []
@@ -41,5 +33,8 @@ class VisaType(models.Model):
             res.append((visa.id, name))
         return res
 
-    def action_change_state_visa(self):
-        return self.write({'state': self.env.context.get('state')})
+
+class ResConfigSettings(models.TransientModel):
+    _inherit = 'res.config.settings'
+
+    race_id = fields.Many2one(comodel_name="catalog.race", string="Race", required=False, )

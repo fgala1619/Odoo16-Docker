@@ -21,7 +21,8 @@
 
 
     <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
-    <menuitem name="Contact Management System" id="contacto_menu" />
+    <menuitem name="Contact Management System" id="contacto_menu"
+              groups="listcontactos.group_admin,listcontactos.group_agent"/>
     <menuitem name="Contacts" id="contactos_menu" parent="contacto_menu" action="contacto_action"/>
 
     <menuitem name="Nomenclator" id="nomenclator_menu"/>

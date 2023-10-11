@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--    <report-->
+<!--            id="action_contact_report"-->
+<!--            model="contactos"-->
+<!--            string="Contact"-->
+<!--            report_type="qweb-pdf"-->
+<!--            name="listcontactos.report_contact_template"-->
+<!--            file="report_contact_template"-->
+<!--            menu="True"/>-->
+
+    <record id="action_contact_report" model="ir.actions.report">
+            <field name="name">Contact</field>
+            <field name="model">contactos</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">listcontactos.report_contact_template</field>
+            <field name="report_file">listcontactos.report_contact_template</field>
+            <field name="print_report_name">'Contact - %s' % (object.identity_number)</field>
+            <field name="binding_model_id" ref="model_contactos"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    <template id="custom_subtotal_section">
+        <div style="width: 33%;" align="center">
+            <hr style="border: 1px solid black;margin-top: 0rem;width: 81%;" />
+            <b>Solicitado por</b>
+        </div>
+        <div style="width: 33%;" align="center">
+            <hr style="border: 1px solid black;margin-top: 0rem;width: 81%;" />
+            <b>Aprob. Subdirector de Area</b>
+        </div>
+        <div style="width: 33%;" align="center">
+            <hr style="border: 1px solid black;margin-top: 0rem;width: 81%;" />
+            <b>Rec. Jefe de Compra</b>
+        </div>
+    </template>
+
+    <template id="report_contact_template">
+        <t t-call="web.html_container">
+            <style type="text/css">
+                .border_ps{
+                    border: 1px solid black;
+                    border-collapse: collapse;
+                }
+             </style>
+         <t t-call="web.external_layout">
+             <div class="page" t-foreach="docs" t-as="o">
+
+                 <table class="table text-left" width="100%">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span>Identity number:</span> <span t-field="o.identity_number"/>
+                            </td>
+                            <td>
+                                <span>Data Entry Date:</span> <span t-field="o.data_entry_date"/>
+                            </td>
+                            <td>
+                                <span>Date of Birth:</span> <span t-field="o.date_of_birth"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Name:</span> <span t-field="o.name"/>
+                            </td>
+                            <td>
+                                <span>Surname:</span> <span t-field="o.surnames"/>
+                            </td>
+                            <td>
+                                <span>Age:</span> <span t-field="o.age"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                 <separator colspan="4"/>
+                  <table class="table text-center" width="100%">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span>Gender:</span> <span t-field="o.gender"/>
+                            </td>
+                            <td>
+                                <span>Visa Type:</span> <span t-field="o.visa_type_id"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Race:</span> <span t-field="o.race_id"/>
+                            </td>
+                            <td>
+                                <span>Email:</span> <span t-field="o.email"/>
+                            </td>
+                        </tr>
+                    </tbody>
+
+
+                </table>
+                <br/>
+                <br/>
+                <br/>
+                 <table class="table text-center" width="100%">
+                     <thead>
+                         <tr>
+                            <th class="text-left"><strong>Street</strong></th>
+                            <th class="text-left"><strong>Number</strong></th>
+                            <th class="text-left"><strong>State</strong></th>
+                            <th class="text-left"><strong>Postal Code</strong></th>
+                        </tr>
+                     </thead>
+                    <tbody>
+                        <t t-foreach="o.address_ids" t-as="line">
+                        <tr>
+                            <td>
+                                <span t-field="line.street"/>
+                            </td>
+                            <td>
+                                <span t-field="line.number"/>
+                            </td>
+                            <td>
+                                <span t-field="line.state_id"/>
+                            </td>
+                            <td>
+                                <span t-field="line.postal_code"/>
+                            </td>
+                        </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <br/>
+                <br/>
+                <br/>
+                 <table class="table text-center" width="100%">
+                     <thead>
+                         <tr>
+                            <th class="text-left"><strong>Bank</strong></th>
+                            <th class="text-left"><strong>Card Type</strong></th>
+                            <th class="text-left"><strong>Status</strong></th>
+                        </tr>
+                     </thead>
+                    <tbody>
+                        <t t-foreach="o.bank_ids" t-as="bank">
+                        <tr>
+                            <td>
+                                <span t-field="bank.bank_id"/>
+                            </td>
+                            <td>
+                                <span t-field="bank.card_type"/>
+                            </td>
+                            <td>
+                                <span t-field="bank.status"/>
+                            </td>
+                        </tr>
+                        </t>
+                    </tbody>
+                </table>
+             </div>
+
+            </t>
+         </t>
+    </template>
+
+</odoo>

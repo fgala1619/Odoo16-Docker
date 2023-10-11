@@ -10,4 +10,4 @@ class BankDetails(models.Model):
     card_type = fields.Selection(string="", selection=[('cr', 'Credit'), ('db', 'Debit'), ], required=True, )
     status = fields.Selection(string="Status", selection=[('current', 'Current'), ('expired', 'Expired'), ],
                               required=True, )
-    contact_id = fields.Many2one("contactos", string="Contactos")
+    # contact_id = fields.Many2one("contactos", string="Contactos")
